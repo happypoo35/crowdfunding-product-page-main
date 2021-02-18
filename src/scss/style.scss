@@ -1,0 +1,19 @@
+@import "config";
+@import "global";
+
+.header {
+  height: 25rem;
+  padding-top: 3rem;
+  background: no-repeat center/cover url("../images/image-hero-desktop.jpg");
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+main {
+  .container {
+    width: min(730px, 100%);
+  }
+}
