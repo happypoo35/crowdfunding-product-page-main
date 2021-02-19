@@ -16,7 +16,9 @@ const Metric = () => {
             <p>days left</p>
           </div>
         </div>
-        <div className="progress-bar"></div>
+        <div className="progress-bar">
+          <div className="progress-bar-fill"></div>
+        </div>
       </div>
     </section>
   );

@@ -1,0 +1,207 @@
+.modal {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%);
+  width: 100%;
+  padding-top: 11.5rem;
+  background: rgba(black, 0.5);
+
+  .container {
+    position: relative;
+    width: min(730px, 100%);
+    background: white;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(black, 0.05);
+    padding: 3rem;
+
+    & > p {
+      margin-bottom: 2rem;
+    }
+  }
+
+  .btn-close {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: transparent;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 50%;
+      height: 1rem;
+      width: 0.125rem;
+      background: $Dark-gray;
+      transform: rotate(45deg);
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 50%;
+      height: 1rem;
+      width: 0.125rem;
+      background: $Dark-gray;
+      transform: rotate(135deg);
+    }
+  }
+
+  h3 {
+    margin-bottom: 1.125rem;
+  }
+
+  .rewards-container {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .reward {
+    border-radius: 0.5rem;
+    border: 1px solid rgba(black, 0.15);
+
+    &-header {
+      padding: 2.125rem 1.5rem;
+
+      p {
+        padding-left: 3rem;
+        font-size: 0.9375rem;
+        letter-spacing: 0.004em;
+        margin-top: 1rem;
+      }
+    }
+  }
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .radio-container {
+    font-weight: 700;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    padding-left: 3rem;
+    margin-right: 1rem;
+    @extend %tr;
+
+    &:hover {
+      color: $Moderate-cyan;
+
+      .checkmark {
+        border-color: $Moderate-cyan;
+      }
+    }
+
+    input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+
+      &:checked ~ .checkmark {
+        &::after {
+          background: $Moderate-cyan;
+        }
+      }
+    }
+
+    .checkmark {
+      position: absolute;
+      left: 0;
+      width: 1.5rem;
+      height: 1.5rem;
+      border: 1px solid rgba(black, 0.15);
+      border-radius: 50%;
+      @extend %tr;
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        height: 0.75rem;
+        width: 0.75rem;
+        background: transparent;
+        border-radius: 50%;
+      }
+    }
+  }
+
+  .price {
+    flex: 1;
+    font-weight: 500;
+    color: $Moderate-cyan;
+  }
+
+  .remaining {
+    display: flex;
+    align-items: center;
+    font-size: 1.125rem;
+    font-weight: 700;
+
+    .left {
+      font-size: 0.9375rem;
+      font-weight: 400;
+      color: $Dark-gray;
+      margin-left: 0.5rem;
+    }
+  }
+
+  form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(black, 0.15);
+    padding: 1.5rem;
+    // display: none;
+
+    .amount-container {
+      position: relative;
+
+      .currency {
+        position: absolute;
+        top: 50%;
+        left: 1.5rem;
+        transform: translateY(-50%);
+        font-size: 0.9375rem;
+        font-weight: 700;
+        color: rgba(black, 0.15);
+      }
+    }
+
+    label {
+      flex: 1;
+      font-size: 0.9375rem;
+      color: $Dark-gray;
+    }
+
+    input {
+      outline: none;
+      border: 1px solid rgba(black, 0.15);
+      background: transparent;
+      border-radius: 2rem;
+      font-size: 0.875rem;
+      text-align: center;
+      font-weight: 700;
+      padding: 1rem 2rem;
+      margin-right: 1rem;
+      width: 6.25rem;
+      -moz-appearance: textfield;
+
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+    }
+  }
+}

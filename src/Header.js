@@ -6,9 +6,9 @@ const Header = () => {
           <img src="./images/logo.svg" alt="crowdfund logo" />
         </a>
         <nav>
-          <a href="/about">About</a>
-          <a href="/discover">Discover</a>
-          <a href="/get-started">Get Started</a>
+          <a href="/">About</a>
+          <a href="/">Discover</a>
+          <a href="/">Get Started</a>
         </nav>
       </div>
     </header>

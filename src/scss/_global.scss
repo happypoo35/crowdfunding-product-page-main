@@ -6,6 +6,10 @@
   padding: 0;
 }
 
+html {
+  position: relative;
+}
+
 .container {
   width: min(1110px, 100%);
   margin-left: auto;
@@ -20,5 +24,115 @@
 body {
   font-family: "Commissioner", sans-serif;
   font-weight: 400;
-  background: lightgray;
+  background: $Bg-gray;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button {
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 1.75rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+}
+
+h5 {
+  font-size: 1.125rem;
+}
+
+p {
+  color: $Dark-gray;
+  line-height: 1.875;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.btn {
+  padding: 1.125rem 2.5rem 1.1875rem;
+  background: $Moderate-cyan;
+  color: white;
+  border-radius: 3rem;
+  @extend %tr;
+
+  &:hover {
+    background: $Dark-cyan;
+  }
+
+  &-medium {
+    font-size: 0.875rem;
+    padding: 0.9375rem 2rem 1rem;
+  }
+
+  &-small {
+    font-size: 0.875rem;
+    padding: 0.9375rem 1.5rem 1rem;
+  }
+
+  &-bookmark {
+    color: $Dark-gray;
+    display: flex;
+    align-items: center;
+    padding-right: 1.5rem;
+    border-radius: 3rem;
+    background: rgba(black, 0.04);
+    @extend %tr;
+
+    &:hover {
+      svg {
+        opacity: 0.7;
+      }
+    }
+
+    svg {
+      display: block;
+      margin-right: 1rem;
+      pointer-events: none;
+      @extend %tr;
+
+      & * {
+        @extend %tr;
+      }
+    }
+
+    &.active {
+      color: $Dark-cyan;
+
+      svg {
+        circle {
+          fill: $Dark-cyan;
+        }
+
+        path {
+          fill: white;
+        }
+      }
+    }
+  }
 }
