@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useGlobalContext } from "./context";
 
 const MainHeader = () => {
   const [isBookmarked, setIsBookmarked] = useState(false);
+  const { openModal } = useGlobalContext();
 
   return (
     <section className="main-header pad" aria-label="project title">
@@ -16,7 +18,9 @@ const MainHeader = () => {
           A beautiful & handcrafted monitor stand to reduce neck and eye strain.
         </p>
         <footer>
-          <button className="btn">Back this project</button>
+          <button className="btn" onClick={openModal}>
+            Back this project
+          </button>
           <button
             className={`btn-bookmark ${isBookmarked && "active"}`}
             onClick={() => setIsBookmarked(!isBookmarked)}

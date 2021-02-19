@@ -85,6 +85,11 @@ button {
     background: $Dark-cyan;
   }
 
+  &:disabled {
+    background: $Dark-gray;
+    pointer-events: none;
+  }
+
   &-medium {
     font-size: 0.875rem;
     padding: 0.9375rem 2rem 1rem;

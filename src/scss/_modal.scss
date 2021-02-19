@@ -7,6 +7,11 @@
   width: 100%;
   padding-top: 11.5rem;
   background: rgba(black, 0.5);
+  display: none;
+
+  &.show-modal {
+    display: block;
+  }
 
   .container {
     position: relative;
@@ -65,6 +70,19 @@
     border-radius: 0.5rem;
     border: 1px solid rgba(black, 0.15);
 
+    &:hover {
+      border-color: rgba(black, 0.3);
+    }
+
+    &.active {
+      border: 2px solid $Moderate-cyan;
+    }
+
+    &.disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
     &-header {
       padding: 2.125rem 1.5rem;
 
@@ -109,6 +127,8 @@
       &:checked ~ .checkmark {
         &::after {
           background: $Moderate-cyan;
+          height: 0.75rem;
+          width: 0.75rem;
         }
       }
     }
@@ -128,10 +148,11 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        height: 0.75rem;
-        width: 0.75rem;
+        height: 0;
+        width: 0;
         background: transparent;
         border-radius: 50%;
+        transition: 0.2s ease;
       }
     }
   }
@@ -162,16 +183,14 @@
     align-items: center;
     border-top: 1px solid rgba(black, 0.15);
     padding: 1.5rem;
-    // display: none;
 
     .amount-container {
       position: relative;
 
       .currency {
         position: absolute;
-        top: 50%;
+        top: .875rem;
         left: 1.5rem;
-        transform: translateY(-50%);
         font-size: 0.9375rem;
         font-weight: 700;
         color: rgba(black, 0.15);

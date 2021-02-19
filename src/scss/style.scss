@@ -132,6 +132,10 @@
   border: 1px solid rgba(black, 0.15);
   padding: 2.375rem 2rem 2rem;
 
+  &.disabled {
+    opacity: 0.5;
+  }
+
   &-header {
     display: flex;
     justify-content: space-between;

@@ -1,13 +1,19 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { rewards } from "./data";
+import { useGlobalContext } from "./context";
 
 const Rewards = () => {
-  const [isChecked, setIsChecked] = useState(true);
+  const [amount, setAmount] = useState("");
+  const { selectedOption, setSelectedOption } = useGlobalContext();
+  const amountContainer = useRef(null);
 
-  // const handleInputChange = (e) => {
-  //   const target = e.target;
-  //   target.checked;
-  // };
+  const handleOptionChange = (e) => {
+    setSelectedOption(e.target.value);
+  };
+
+  const handleAmountChange = (e) => {
+    setAmount(e.target.value);
+  };
 
   return (
     <div className="rewards-container">
@@ -15,7 +21,13 @@ const Rewards = () => {
         const { id, title, price, text, remaining } = reward;
 
         return (
-          <article className="reward" aria-label="reward-option" key={id}>
+          <article
+            className={`reward ${
+              selectedOption === `option${id}` && "active"
+            } ${remaining === 0 && "disabled"}`}
+            aria-label="reward-option"
+            key={id}
+          >
             <header className="reward-header">
               <div className="row">
                 <label className="radio-container">
@@ -23,15 +35,16 @@ const Rewards = () => {
                   <input
                     type="radio"
                     name="radio"
-                    checked={isChecked}
-                    onChange={() => setIsChecked(!isChecked)}
+                    value={`option${id}`}
+                    checked={selectedOption === `option${id}`}
+                    onChange={handleOptionChange}
                   />
                   <span className="checkmark"></span>
                 </label>
                 {price && (
                   <span className="price">{`Pledge $${price} or more`}</span>
                 )}
-                {remaining && (
+                {remaining !== "" && (
                   <span className="remaining">
                     {remaining} <span className="left">left</span>
                   </span>
@@ -39,19 +52,24 @@ const Rewards = () => {
               </div>
               <p>{text}</p>
             </header>
-            <form action="" className="amount">
-              <label htmlFor="amount">Enter your pledge</label>
-              <div className="amount-container">
-                <input
-                  type="number"
-                  name="amount"
-                  autoComplete="off"
-                  // value={price}
-                />
-                <span className="currency">$</span>
-              </div>
-              <button className="btn btn-small">Continue</button>
-            </form>
+            {selectedOption === `option${id}` && (
+              <form action="" className="amount">
+                <label htmlFor="amount">Enter your pledge</label>
+                <div className="amount-container">
+                  <input
+                    type="number"
+                    name="amount"
+                    autoComplete="off"
+                    min={price}
+                    value={amount ? amount : price}
+                    onChange={handleAmountChange}
+                    ref={amountContainer}
+                  />
+                  <span className="currency">$</span>
+                </div>
+                <button className="btn btn-small">Continue</button>
+              </form>
+            )}
           </article>
         );
       })}
