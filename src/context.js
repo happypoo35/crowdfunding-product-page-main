@@ -6,7 +6,7 @@ const AppContext = React.createContext();
 const initialState = {
   total: "89,914",
   backers: "5,007",
-  amount: 0,
+  remaining: [],
 };
 
 export const AppProvider = ({ children }) => {

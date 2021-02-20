@@ -1,9 +1,7 @@
 const reducer = (state, action) => {
-  switch (action.type) {
-    case 'TOGGLE_AMOUNT': {
-      return {...state}
-    }
+  if (action.type === "DECREASE_AMOUNT") {
+    return { ...state };
   }
-}
+};
 
-export default reducer
+export default reducer;
