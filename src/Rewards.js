@@ -4,16 +4,33 @@ import { useGlobalContext } from "./context";
 
 const Rewards = () => {
   const [amount, setAmount] = useState("");
-  const { selectedOption, setSelectedOption } = useGlobalContext();
-  const amountContainer = useRef(null);
+  const {
+    selectedOption,
+    setSelectedOption,
+    openSuccess,
+    isModalOpen,
+  } = useGlobalContext();
+  // const amountContainer = useRef(null);
 
   const handleOptionChange = (e) => {
     setSelectedOption(e.target.value);
+    setAmount("");
   };
 
   const handleAmountChange = (e) => {
     setAmount(e.target.value);
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!amount) return;
+    setAmount("");
+    openSuccess();
+  };
+
+  useEffect(() => {
+    !isModalOpen && setAmount("");
+  }, [isModalOpen]);
 
   return (
     <div className="rewards-container">
@@ -52,8 +69,9 @@ const Rewards = () => {
               </div>
               <p>{text}</p>
             </header>
+
             {selectedOption === `option${id}` && (
-              <form action="" className="amount">
+              <form className="amount" onSubmit={handleSubmit}>
                 <label htmlFor="amount">Enter your pledge</label>
                 <div className="amount-container">
                   <input
@@ -61,13 +79,16 @@ const Rewards = () => {
                     name="amount"
                     autoComplete="off"
                     min={price}
-                    value={amount ? amount : price}
+                    value={amount ? amount : price ? setAmount(price) : ""}
                     onChange={handleAmountChange}
-                    ref={amountContainer}
+                    required
+                    // ref={amountContainer}
                   />
                   <span className="currency">$</span>
                 </div>
-                <button className="btn btn-small">Continue</button>
+                <button type="submit" className="btn btn-small">
+                  Continue
+                </button>
               </form>
             )}
           </article>

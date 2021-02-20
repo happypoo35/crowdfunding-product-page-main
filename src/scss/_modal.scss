@@ -1,12 +1,5 @@
-.modal {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  transform: translate(-50%);
-  width: 100%;
+.modal-rewards {
   padding-top: 11.5rem;
-  background: rgba(black, 0.5);
   display: none;
 
   &.show-modal {
@@ -89,7 +82,6 @@
       p {
         padding-left: 3rem;
         font-size: 0.9375rem;
-        letter-spacing: 0.004em;
         margin-top: 1rem;
       }
     }

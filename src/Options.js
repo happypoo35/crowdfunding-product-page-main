@@ -1,4 +1,4 @@
-import { options } from "./data";
+import { rewards } from "./data";
 import { useGlobalContext } from "./context";
 
 const Options = () => {
@@ -6,8 +6,10 @@ const Options = () => {
 
   return (
     <div className="options-container">
-      {options.map((option) => {
+      {rewards.map((option) => {
         const { id, title, price, text, remaining } = option;
+        if (id === 1) return;
+        
         return (
           <article
             className={`option ${remaining === 0 && "disabled"}`}
@@ -28,7 +30,7 @@ const Options = () => {
                 disabled={remaining === 0}
                 onClick={() => openModal(id)}
               >
-                Select Reward
+                {remaining !== 0 ? "Select Reward" : "Out of stock"}
               </button>
             </footer>
           </article>

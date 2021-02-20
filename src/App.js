@@ -1,6 +1,7 @@
 import Header from "./Header";
 import Main from "./Main";
 import Modal from "./Modal";
+import ModalSuccess from "./ModalSuccess";
 
 const App = () => {
   return (
@@ -8,6 +9,7 @@ const App = () => {
       <Header />
       <Main />
       <Modal />
+      <ModalSuccess />
     </>
   );
 };

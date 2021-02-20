@@ -6,7 +6,7 @@ const Modal = () => {
 
   return (
     <section
-      className={`modal pad ${isModalOpen && "show-modal"}`}
+      className={`modal modal-rewards pad ${isModalOpen && "show-modal"}`}
       aria-label="select reward"
     >
       <div className="container">

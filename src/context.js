@@ -1,9 +1,18 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useReducer, useState } from "react";
+import reducer from "./reducer";
 
 const AppContext = React.createContext();
 
+const initialState = {
+  total: "89,914",
+  backers: "5,007",
+  amount: 0,
+};
+
 export const AppProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(reducer, initialState);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSuccessOpen, setIsSuccessOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("");
 
   const openModal = (id) => {
@@ -11,9 +20,20 @@ export const AppProvider = ({ children }) => {
     setSelectedOption(`option${id}`);
     setIsModalOpen(true);
   };
+
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedOption("");
+  };
+
+  const openSuccess = () => {
+    window.scrollTo(0, 150);
+    closeModal();
+    setIsSuccessOpen(true);
+  };
+
+  const closeSuccess = () => {
+    setIsSuccessOpen(false);
   };
 
   return (
@@ -22,6 +42,9 @@ export const AppProvider = ({ children }) => {
         isModalOpen,
         openModal,
         closeModal,
+        isSuccessOpen,
+        openSuccess,
+        closeSuccess,
         selectedOption,
         setSelectedOption,
       }}
