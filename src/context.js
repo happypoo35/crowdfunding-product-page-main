@@ -1,12 +1,13 @@
-import React, { useContext, useReducer, useState } from "react";
+import React, { useContext, useEffect, useReducer, useState } from "react";
+import { rewards } from "./data";
 import reducer from "./reducer";
 
 const AppContext = React.createContext();
 
 const initialState = {
-  total: "89,914",
-  backers: "5,007",
-  remaining: [],
+  data: rewards,
+  total: 89914,
+  backers: 5007,
 };
 
 export const AppProvider = ({ children }) => {
@@ -36,6 +37,14 @@ export const AppProvider = ({ children }) => {
     setIsSuccessOpen(false);
   };
 
+  const decreaseAmount = (id) => {
+    dispatch({ type: "DECREASE_AMOUNT", payload: id });
+  };
+
+  const setTotal = (amount) => {
+    dispatch({ type: "GET_TOTAL", payload: amount });
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -47,6 +56,9 @@ export const AppProvider = ({ children }) => {
         closeSuccess,
         selectedOption,
         setSelectedOption,
+        ...state,
+        setTotal,
+        decreaseAmount,
       }}
     >
       {children}

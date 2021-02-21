@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { rewards } from "./data";
+// import { rewards } from "./data";
 import { useGlobalContext } from "./context";
 
 const Rewards = () => {
@@ -9,8 +9,10 @@ const Rewards = () => {
     setSelectedOption,
     openSuccess,
     isModalOpen,
+    data,
+    setTotal,
+    decreaseAmount,
   } = useGlobalContext();
-  // const amountContainer = useRef(null);
 
   const handleOptionChange = (e) => {
     setSelectedOption(e.target.value);
@@ -24,6 +26,7 @@ const Rewards = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!amount) return;
+    setTotal(parseInt(amount));
     setAmount("");
     openSuccess();
   };
@@ -34,7 +37,7 @@ const Rewards = () => {
 
   return (
     <div className="rewards-container">
-      {rewards.map((reward) => {
+      {data.map((reward) => {
         const { id, title, price, text, remaining } = reward;
 
         return (
@@ -78,15 +81,18 @@ const Rewards = () => {
                     type="number"
                     name="amount"
                     autoComplete="off"
-                    min={price}
+                    min={price || 1}
                     value={amount ? amount : price ? setAmount(price) : ""}
                     onChange={handleAmountChange}
                     required
-                    // ref={amountContainer}
                   />
                   <span className="currency">$</span>
                 </div>
-                <button type="submit" className="btn btn-small">
+                <button
+                  type="submit"
+                  className="btn btn-small"
+                  onClick={() => amount >= price && decreaseAmount(id)}
+                >
                   Continue
                 </button>
               </form>
