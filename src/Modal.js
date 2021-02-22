@@ -13,7 +13,7 @@ const Modal = () => {
         <button
           className="btn-close"
           onClick={closeModal}
-          arial-label="close"
+          aria-label="close"
         ></button>
         <h3>Back this project</h3>
         <p>
