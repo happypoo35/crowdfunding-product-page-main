@@ -36,6 +36,13 @@
       right: 1.5rem;
     }
 
+    &:hover {
+      &::before,
+      &::after {
+        background: black;
+      }
+    }
+
     &::before {
       content: "";
       position: absolute;
@@ -45,6 +52,7 @@
       width: 0.125rem;
       background: $Dark-gray;
       transform: rotate(45deg);
+      @extend %tr;
     }
 
     &::after {
@@ -56,6 +64,7 @@
       width: 0.125rem;
       background: $Dark-gray;
       transform: rotate(135deg);
+      @extend %tr;
     }
   }
 
