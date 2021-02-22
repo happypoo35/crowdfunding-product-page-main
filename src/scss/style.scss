@@ -2,18 +2,29 @@
 @import "global";
 
 .header {
-  height: 25rem;
-  padding-top: 3rem;
+  height: clamp(18.75rem, 50vw, 25rem);
+  padding-top: clamp(2rem, -1rem + 8vw, 3rem);
   background: linear-gradient(to bottom, rgba(black, 0.7), transparent 30%),
     no-repeat center/cover url("../images/image-hero-desktop.jpg");
+
+  @include tablet {
+    background: linear-gradient(to bottom, rgba(black, 0.7), transparent 30%),
+      no-repeat center/cover url("../images/image-hero-mobile.jpg");
+  }
 
   .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
+    z-index: 1;
   }
 
   nav {
+    @include mobile {
+      display: none;
+    }
+
     & > * + * {
       margin-left: 2.125rem;
     }
@@ -24,11 +35,71 @@
     letter-spacing: -0.005em;
     color: white;
   }
+
+  .hamburger {
+    cursor: pointer;
+    width: 1.5rem;
+    height: 1.5rem;
+    justify-content: flex-end;
+    align-items: center;
+    display: none;
+
+    @include mobile {
+      display: flex;
+    }
+
+    &-icon {
+      position: relative;
+      width: 1rem;
+      height: 3px;
+      background: white;
+      pointer-events: none;
+
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        width: 1rem;
+        height: 3px;
+        background: white;
+        @extend %tr;
+      }
+
+      &::before {
+        bottom: 6px;
+      }
+
+      &::after {
+        top: 6px;
+      }
+    }
+
+    &.active {
+      .hamburger-icon {
+        background: transparent;
+
+        &::before {
+          bottom: 0;
+          transform: rotate(45deg);
+        }
+
+        &::after {
+          top: 0;
+          transform: rotate(-45deg);
+        }
+      }
+    }
+  }
 }
 
 .main {
   transform: translateY(-5.75rem);
   margin-bottom: 2rem;
+
+  @include tablet {
+    margin-bottom: 1.125rem;
+    transform: translateY(-3.5rem);
+  }
 
   & > * + * {
     margin-top: 1.625rem;
@@ -39,7 +110,7 @@
     background: white;
     border-radius: 0.5rem;
     border: 1px solid rgba(black, 0.05);
-    padding: 3rem;
+    padding: clamp(2.5rem, 1rem + 4vw, 3rem) clamp(1.5rem, -3rem + 12vw, 3rem);
   }
 
   &-header {
@@ -79,10 +150,32 @@
     gap: 3rem;
     margin-bottom: 2.5rem;
 
+    @include tablet {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      place-items: center;
+    }
+
     .stat {
       &:not(:last-child) {
         border-right: 1px solid rgba(black, 0.15);
         padding-right: 1.5rem;
+
+        @include tablet {
+          padding-right: unset;
+          border-right: unset;
+        }
+      }
+
+      &:nth-child(2) {
+        @include tablet {
+          padding-top: 1.5rem;
+          padding-bottom: 1.5rem;
+          border-top: 1px solid rgba(black, 0.15);
+          border-bottom: 1px solid rgba(black, 0.15);
+        }
       }
     }
   }
@@ -93,6 +186,10 @@
 
   p {
     font-size: 0.9375rem;
+
+    @include tablet {
+      font-size: 0.875rem;
+    }
   }
 
   .progress-bar {
@@ -113,12 +210,16 @@
 
 .about {
   h4 {
-    margin-bottom: 2.25rem;
+    margin-bottom: clamp(1.75rem, 0.25rem + 4vw, 2.25rem);
   }
 
   .container {
     & > p {
       margin-bottom: 3rem;
+
+      @include tablet {
+        margin-bottom: 2.25rem;
+      }
     }
   }
 }
@@ -133,6 +234,10 @@
   border: 1px solid rgba(black, 0.15);
   padding: 2.375rem 2rem 2rem;
 
+  @include tablet {
+    padding: 1.5rem;
+  }
+
   &.disabled {
     opacity: 0.5;
   }
@@ -143,10 +248,20 @@
     align-items: center;
     margin-bottom: 1.5rem;
 
+    @include mobile {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
     .price {
       font-size: 0.9375rem;
       font-weight: 500;
       color: $Moderate-cyan;
+
+      @include tablet {
+        font-size: 0.875rem;
+        margin-top: 0.5rem;
+      }
     }
   }
 
@@ -158,6 +273,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    @include mobile {
+      flex-direction: column;
+      align-items: flex-start;
+    }
   }
 
   .remaining {
@@ -165,6 +285,10 @@
     align-items: center;
     font-size: 2rem;
     font-weight: 700;
+
+    @include mobile {
+      margin-bottom: 1.75rem;
+    }
 
     .left {
       font-size: 0.9375rem;
@@ -178,3 +302,5 @@
 @import "modal";
 
 @import "modal-success";
+
+@import "modal-menu";

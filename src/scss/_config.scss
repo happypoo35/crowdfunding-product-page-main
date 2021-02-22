@@ -8,3 +8,29 @@ $Bg-gray: #fafafa;
 %tr {
   transition: 0.3s ease;
 }
+
+$tablet: 768px;
+$ld: 580px;
+$mobile: 480px;
+$sd: 375px;
+
+@mixin tablet {
+  @media screen and(max-width: $tablet) {
+    @content;
+  }
+}
+@mixin ld {
+  @media screen and(max-width: $ld) {
+    @content;
+  }
+}
+@mixin mobile {
+  @media screen and(max-width: $mobile) {
+    @content;
+  }
+}
+@mixin sd {
+  @media screen and(max-width: $sd) {
+    @content;
+  }
+}

@@ -1,6 +1,11 @@
 .modal-success {
   padding-top: 43vh;
   display: none;
+  z-index: 1;
+
+  @include mobile {
+    padding-top: 21vh;
+  }
 
   &.show-success {
     display: block;
@@ -13,10 +18,18 @@
     border: 1px solid rgba(black, 0.05);
     padding: 3rem 3.5rem;
     text-align: center;
+
+    @include mobile {
+      padding: 2rem 1.5rem 2.5rem;
+    }
   }
 
   img {
     margin-bottom: 3rem;
+
+    @include mobile {
+      margin-bottom: 1.5rem;
+    }
   }
 
   h3 {
@@ -26,6 +39,10 @@
   p {
     font-size: 0.9375rem;
     margin-bottom: 2.125rem;
+
+    @include tablet {
+      font-size: 0.875rem;
+    }
   }
 
   .btn {

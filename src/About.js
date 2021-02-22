@@ -1,5 +1,4 @@
 import { options } from "./data";
-import Option from "./Option";
 import Options from "./Options";
 
 const About = () => {
@@ -19,11 +18,6 @@ const About = () => {
           extra desk space below your computer to allow notepads, pens, and USB
           sticks to be stored under the stand.
         </p>
-        {/* <section className="options-container" aria-label="option select">
-          {options.map((option) => {
-            return <Option key={option.id} {...option} />;
-          })}
-        </section> */}
         <Options />
       </div>
     </section>

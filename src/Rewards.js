@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-// import { rewards } from "./data";
 import { useGlobalContext } from "./context";
 
 const Rewards = () => {
@@ -49,28 +48,28 @@ const Rewards = () => {
             key={id}
           >
             <header className="reward-header">
-              <div className="row">
-                <label className="radio-container">
-                  {title}
-                  <input
-                    type="radio"
-                    name="radio"
-                    value={`option${id}`}
-                    checked={selectedOption === `option${id}`}
-                    onChange={handleOptionChange}
-                  />
-                  <span className="checkmark"></span>
-                </label>
-                {price && (
-                  <span className="price">{`Pledge $${price} or more`}</span>
-                )}
-                {remaining !== "" && (
-                  <span className="remaining">
-                    {remaining} <span className="left">left</span>
-                  </span>
-                )}
-              </div>
+              <label className="radio-container">
+                <div className="label-title">
+                  <span>{title}</span>
+                  {price && (
+                    <span className="price">{`Pledge $${price} or more`}</span>
+                  )}
+                </div>
+                <input
+                  type="radio"
+                  name="radio"
+                  value={`option${id}`}
+                  checked={selectedOption === `option${id}`}
+                  onChange={handleOptionChange}
+                />
+                <span className="checkmark"></span>
+              </label>
               <p>{text}</p>
+              {remaining !== "" && (
+                <span className="remaining">
+                  {remaining} <span className="left">left</span>
+                </span>
+              )}
             </header>
 
             {selectedOption === `option${id}` && (

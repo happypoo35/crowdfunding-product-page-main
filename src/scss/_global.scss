@@ -23,6 +23,7 @@ html {
 
 body {
   font-family: "Commissioner", sans-serif;
+  font-size: clamp(0.875rem, 0.5rem + 1vw, 1rem);
   font-weight: 400;
   background: $Bg-gray;
 }
@@ -38,7 +39,7 @@ button {
 }
 
 h1 {
-  font-size: 1.75rem;
+  font-size: clamp(1.25rem, 4vw, 1.75rem);
 }
 
 h2 {
@@ -46,20 +47,24 @@ h2 {
 }
 
 h3 {
-  font-size: 1.5rem;
+  font-size: clamp(1.125rem, 3vw, 1.5rem);
 }
 
 h4 {
-  font-size: 1.25rem;
+  font-size: clamp(1.125rem, 3vw, 1.25rem);
 }
 
 h5 {
-  font-size: 1.125rem;
+  font-size: clamp(0.875rem, 2.5vw, 1.125rem);
 }
 
 p {
   color: $Dark-gray;
   line-height: 1.875;
+
+  @include tablet {
+    line-height: 1.7;
+  }
 }
 
 a {
@@ -104,10 +109,20 @@ button {
     color: $Dark-gray;
     display: flex;
     align-items: center;
+    height: 3.5rem;
     padding-right: 1.5rem;
     border-radius: 3rem;
     background: rgba(black, 0.04);
     @extend %tr;
+
+    @include mobile {
+      position: relative;
+      width: 3.5rem;
+      min-width: 3.5rem;
+      padding-right: unset;
+      overflow: hidden;
+      color: transparent;
+    }
 
     &:hover {
       svg {
@@ -121,6 +136,11 @@ button {
       pointer-events: none;
       @extend %tr;
 
+      @include mobile {
+        position: absolute;
+        left: 0;
+      }
+
       & * {
         @extend %tr;
       }
@@ -128,6 +148,10 @@ button {
 
     &.active {
       color: $Dark-cyan;
+
+      @include mobile {
+        color: transparent;
+      }
 
       svg {
         circle {

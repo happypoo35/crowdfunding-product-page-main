@@ -1,0 +1,42 @@
+.modal-menu {
+  height: 100vh;
+  padding-top: 5.5rem;
+  background: linear-gradient(to bottom, rgba(black, 0.5) 20%, transparent);
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  @extend %tr;
+
+  &.show-menu {
+    pointer-events: unset;
+    opacity: 1;
+
+    .container {
+      transform: translateX(0);
+    }
+  }
+
+  .container {
+    border-radius: 0.5rem;
+    transform: translateX(100vw);
+    border: 1px solid rgba(black, 0.05);
+    background: white;
+    @extend %tr;
+  }
+
+  nav {
+    display: flex;
+    flex-direction: column;
+
+    & > * + * {
+      border-top: 1px solid rgba(black, 0.1);
+    }
+  }
+
+  a {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: black;
+    padding: 1.5rem;
+  }
+}

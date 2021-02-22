@@ -14,6 +14,7 @@ export const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSuccessOpen, setIsSuccessOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("");
 
   const openModal = (id) => {
@@ -54,6 +55,8 @@ export const AppProvider = ({ children }) => {
         isSuccessOpen,
         openSuccess,
         closeSuccess,
+        isMenuOpen,
+        setIsMenuOpen,
         selectedOption,
         setSelectedOption,
         ...state,

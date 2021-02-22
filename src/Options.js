@@ -1,4 +1,3 @@
-// import { rewards } from "./data";
 import { useGlobalContext } from "./context";
 
 const Options = () => {
