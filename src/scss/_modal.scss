@@ -222,12 +222,19 @@
     padding: 1.5rem;
 
     @include ld {
-      flex-wrap: wrap;
-      justify-content: center;
+      flex-direction: column;
     }
 
     .amount-container {
       position: relative;
+      display: grid;
+      grid-template-columns: auto auto;
+      gap: 1rem;
+
+      @include sd {
+        grid-template-columns: auto;
+        place-items: center;
+      }
 
       .currency {
         pointer-events: none;
@@ -246,8 +253,6 @@
       color: $Dark-gray;
 
       @include ld {
-        min-width: 100%;
-        text-align: center;
         margin-bottom: 1.25rem;
       }
     }
@@ -262,15 +267,9 @@
       font-family: inherit;
       font-weight: 700;
       padding: 1rem 2rem;
-      margin-right: 1rem;
       width: 6.25rem;
       caret-color: $Dark-cyan;
       -moz-appearance: textfield;
-
-      @include sd {
-        margin-right: unset;
-        margin-bottom: 1rem;
-      }
 
       &:hover {
         border-color: rgba(black, 0.3);

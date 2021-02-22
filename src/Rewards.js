@@ -86,14 +86,14 @@ const Rewards = () => {
                     required
                   />
                   <span className="currency">$</span>
+                  <button
+                    type="submit"
+                    className="btn btn-small"
+                    onClick={() => amount >= price && decreaseAmount(id)}
+                  >
+                    Continue
+                  </button>
                 </div>
-                <button
-                  type="submit"
-                  className="btn btn-small"
-                  onClick={() => amount >= price && decreaseAmount(id)}
-                >
-                  Continue
-                </button>
               </form>
             )}
           </article>

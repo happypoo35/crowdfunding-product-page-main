@@ -1,25 +1,31 @@
 .modal-success {
-  padding-top: 43vh;
+  // padding-top: 43vh;
+  height: 100vh;
+  position: fixed;
   display: none;
   z-index: 1;
 
-  @include mobile {
-    padding-top: 21vh;
-  }
+  // @include mobile {
+  //   padding-top: 21vh;
+  // }
 
   &.show-success {
     display: block;
   }
 
   .container {
-    width: min(540px, 100%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(540px, calc(100% - 3rem));
     background: white;
     border-radius: 0.5rem;
     border: 1px solid rgba(black, 0.05);
     padding: 3rem 3.5rem;
     text-align: center;
 
-    @include mobile {
+    @include ld {
       padding: 2rem 1.5rem 2.5rem;
     }
   }
@@ -27,7 +33,7 @@
   img {
     margin-bottom: 3rem;
 
-    @include mobile {
+    @include ld {
       margin-bottom: 1.5rem;
     }
   }

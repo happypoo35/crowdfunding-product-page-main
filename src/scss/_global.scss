@@ -10,6 +10,18 @@ html {
   position: relative;
 }
 
+.wrapper {
+  &.active {
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  &.module-active {
+    height: 1370px;
+    overflow: hidden;
+  }
+}
+
 .container {
   width: min(1110px, 100%);
   margin-left: auto;
@@ -19,6 +31,16 @@ html {
 .pad {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
+}
+
+.modal {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%);
+  background: rgba(black, 0.5);
+  width: 100%;
 }
 
 body {
@@ -164,14 +186,4 @@ button {
       }
     }
   }
-}
-
-.modal {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  transform: translate(-50%);
-  background: rgba(black, 0.5);
-  width: 100%;
 }

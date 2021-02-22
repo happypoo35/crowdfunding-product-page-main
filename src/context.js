@@ -16,9 +16,10 @@ export const AppProvider = ({ children }) => {
   const [isSuccessOpen, setIsSuccessOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("");
+  const [windowSize, setWindowSize] = useState(window.innerWidth);
 
   const openModal = (id) => {
-    window.scrollTo(0, 150);
+    windowSize > 480 ? window.scrollTo(0, 150) : window.scrollTo(0, 100);
     setSelectedOption(`option${id}`);
     setIsModalOpen(true);
   };
@@ -29,7 +30,6 @@ export const AppProvider = ({ children }) => {
   };
 
   const openSuccess = () => {
-    window.scrollTo(0, 150);
     closeModal();
     setIsSuccessOpen(true);
   };
@@ -45,6 +45,36 @@ export const AppProvider = ({ children }) => {
   const setTotal = (amount) => {
     dispatch({ type: "GET_TOTAL", payload: amount });
   };
+
+  const checkSize = () => {
+    setWindowSize(window.innerWidth);
+  };
+
+  const checkTarget = (e) => {
+    if (e.target.classList[0] === "modal") {
+      closeModal();
+      closeSuccess();
+      setIsMenuOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", checkSize);
+    return () => {
+      window.removeEventListener("resize", checkSize);
+    };
+  });
+
+  useEffect(() => {
+    if (windowSize > 480) setIsMenuOpen(false);
+  }, [windowSize]);
+
+  useEffect(() => {
+    window.addEventListener("click", checkTarget);
+    return () => {
+      window.removeEventListener("click", checkTarget);
+    };
+  });
 
   return (
     <AppContext.Provider
