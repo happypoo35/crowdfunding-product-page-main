@@ -1,29 +1,31 @@
 .modal-success {
-  // padding-top: 43vh;
   height: 100vh;
   position: fixed;
-  display: none;
+  visibility: hidden;
   z-index: 1;
 
-  // @include mobile {
-  //   padding-top: 21vh;
-  // }
-
   &.show-success {
-    display: block;
+    visibility: visible;
+
+    .container {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
   }
 
   .container {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) scale(0);
     width: min(540px, 90%);
     background: white;
     border-radius: 0.5rem;
     border: 1px solid rgba(black, 0.05);
     padding: 3rem 3.5rem;
     text-align: center;
+    opacity: 0;
+    @extend %tr;
 
     @include ld {
       padding: 2rem 1.5rem 2.5rem;

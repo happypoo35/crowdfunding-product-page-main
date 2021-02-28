@@ -19,7 +19,9 @@ export const AppProvider = ({ children }) => {
   const [windowSize, setWindowSize] = useState(window.innerWidth);
 
   const openModal = (id) => {
-    windowSize > 480 ? window.scrollTo(0, 150) : window.scrollTo(0, 100);
+    windowSize > 480
+      ? window.scroll({ top: 150, behavior: "smooth" })
+      : window.scroll({ top: 100, behavior: "smooth" });
     setSelectedOption(`option${id}`);
     setIsModalOpen(true);
   };
